@@ -41,6 +41,7 @@ const products = [
     },
     {
         id: 'gemini-advanced',
+        available: true,
         name: 'Gemini Advanced',
         icon: '<img src="images/gemini.google_logo.png" style="width:40px;height:40px;" alt="Gemini">',
         category: 'AI Tools',
@@ -459,9 +460,32 @@ function clearSearch() {
 function renderProductDetail() {
     const detailContainer = document.getElementById('productDetail');
     if (!detailContainer) return;
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('id');
     
-    // ... existing code to find product ...
+    let product = null;
     
+    // Try localStorage
+    const storedProduct = localStorage.getItem('currentProduct');
+    if (storedProduct) {
+        const parsed = JSON.parse(storedProduct);
+        if (parsed.id === productId) {
+            product = parsed;
+        }
+    }
+    
+    // Fallback
+    if (!product && productId) {
+        product = products.find(p => p.id === productId);
+    }
+    
+    if (!product) {
+        product = products[0];
+    }
+
+    document.title = `${product.name} - Shift`;
+
     // CHECK IF PRODUCT IS UNAVAILABLE
     if (product.available === false) {
         detailContainer.innerHTML = `
@@ -472,11 +496,71 @@ function renderProductDetail() {
                 <a href="index.html" class="btn btn-primary">← Back to Products</a>
             </div>
         `;
-        document.title = 'Unavailable - Shift';
         return;
     }
-    
-    // ... rest of existing render code ...
+
+    const def = product.durations[0];
+
+    // Build duration selector HTML
+    let durationSelectorHTML = '';
+    if (product.durationType === 'selectable') {
+        durationSelectorHTML = `
+        <div class="duration-selector">
+            ${product.durations.map((d, i) => `
+                <button class="duration-btn ${i === 0 ? 'active' : ''}" onclick="selectDuration(this, '${d.price}', '${d.oldPrice}', '${d.discount}', '${d.label}')">
+                    ${d.label}
+                    <span class="dur-price">$${d.price}</span>
+                    <span class="dur-save">Save ${d.discount}</span>
+                </button>
+            `).join('')}
+        </div>`;
+    } else if (product.durationType === 'none') {
+        durationSelectorHTML = '<p style="text-align:center;color:rgba(242,241,238,0.4);margin-bottom:1rem;">⚡ Service - No duration</p>';
+    }
+
+    const specsHTML = Object.entries(product.specs).map(([key, value]) => `
+        <div class="spec-item"><div class="spec-icon">${key.split(' ')[0]}</div><div class="spec-text"><strong>${key.split(' ').slice(1).join(' ')}</strong><span>${value}</span></div></div>
+    `).join('');
+    const featuresHTML = product.features.map(f => `<li>${f}</li>`).join('');
+
+    detailContainer.innerHTML = `
+        <div class="breadcrumb">
+            <a href="index.html">Home</a><span class="separator">›</span>
+            <a href="index.html#products">Products</a><span class="separator">›</span>
+            <span>${product.name}</span>
+        </div>
+        <div class="product-header">
+            <div class="product-icon-large">${product.icon}</div>
+            <div class="product-info">
+                <span class="product-category-tag">${product.category}</span>
+                <h1>${product.name}</h1>
+                <p class="tagline">${product.tagline}</p>
+                <p style="color:rgba(242,241,238,0.6);margin-bottom:1.2rem;font-size:0.9rem;">${product.description}</p>
+                ${durationSelectorHTML}
+                <div class="price-box">
+                    <span class="discount-badge" id="dynamicDiscount">SAVE ${def.discount}</span>
+                    <div class="old-price" id="dynamicOldPrice">$${def.oldPrice}</div>
+                    <div class="current-price" id="dynamicCurrentPrice">$${def.price}</div>
+                    <span class="period">${def.label}</span>
+                </div>
+            </div>
+        </div>
+        <h2 style="font-size:1.3rem;margin-bottom:1rem;">📋 Specifications</h2>
+        <div class="specs-grid">${specsHTML}</div>
+        <h2 style="font-size:1.3rem;margin-bottom:1rem;">✅ What's Included</h2>
+        <ul class="features-list">${featuresHTML}</ul>
+        <div class="cta-box">
+            <h2>Get ${product.name} Now</h2>
+            <p>Instant delivery via WhatsApp. ${product.warranty} included.</p>
+            <button class="btn-get-now" id="ctaButton" data-price="${def.price}" data-duration="${def.label}" onclick="openWhatsApp('${product.name}', this.getAttribute('data-price'), this.getAttribute('data-duration'))">
+                💬 Get on WhatsApp - $${def.price} (${def.label})
+            </button>
+            <p class="guarantee-text">🔒 ${product.warranty} • ${product.delivery} • ${product.support}</p>
+        </div>
+        <div style="text-align:center;margin-bottom:2rem;">
+            <a href="index.html#products" class="btn-back">← Back to All Products</a>
+        </div>
+    `;
 }
 document.addEventListener('DOMContentLoaded', () => {
     if (window.location.pathname.includes('product.html')) renderProductDetail();
