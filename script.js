@@ -1,7 +1,7 @@
 // =============================================
 // CONFIGURATION
 // =============================================
-const WHATSAPP_NUMBER = '+96171817081'; // ← CHANGE THIS
+const WHATSAPP_NUMBER = '96171817081'; // ← CHANGE THIS
 const WHATSAPP_MESSAGE_TEMPLATE = "Hi Shift Team! 👋 I'm interested in the *{product}* plan ({duration}) at *${price}*. I'd like to get started!";
 const SOCIAL_LINKS = {
     instagram: 'https://instagram.com/0shiftagency',
