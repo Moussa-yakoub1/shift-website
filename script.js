@@ -430,7 +430,7 @@ const products = [
     {
         id: 'amazon-prime-1m',
         name: 'Amazon Prime (1M)',
-        icon: '<img src="images/amazon_logo.png" style="width:40px;height:40px;" alt="Amazon Prime">',
+        icon: '<img src="images/primevideo_logo.png" style="width:40px;height:40px;" alt="Amazon Prime">',
         category: 'Streaming',
         tagline: 'Amazon Prime - 1 Month',
         description: 'Amazon Prime full account for 1 month. TV Lebanon available.',
@@ -448,7 +448,7 @@ const products = [
     {
         id: 'amazon-prime-6m',
         name: 'Amazon Prime (6M)',
-        icon: '<img src="images/amazon_logo.png" style="width:40px;height:40px;" alt="Amazon Prime">',
+        icon: '<img src="images/primevideo_logo.png" style="width:40px;height:40px;" alt="Amazon Prime">',
         category: 'Streaming',
         tagline: 'Amazon Prime - 6 Months',
         description: 'Amazon Prime full account for 6 months. TV Lebanon available.',
