@@ -48,10 +48,8 @@ const products = [
         description: 'Google Gemini Advanced with 2TB Google One storage included.',
         durationType: 'selectable',
         durations: [
-            { label: '1 Month', months: 1, price: '17.99', oldPrice: '24.99', discount: '28%' },
-            { label: '3 Months', months: 3, price: '39.99', oldPrice: '74.99', discount: '47%' },
-            { label: '6 Months', months: 6, price: '69.99', oldPrice: '149.99', discount: '53%' },
-            { label: '12 Months', months: 12, price: '119.99', oldPrice: '299.99', discount: '60%' }
+
+            { label: '12 Months', months: 12, price: '15', oldPrice: '120', discount: '88%' }
         ],
         accountType: 'Private Account',
         delivery: 'Instant (under 5 min)',
