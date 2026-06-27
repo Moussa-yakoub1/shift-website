@@ -58,27 +58,27 @@ const products = [
         features: ['Gemini Ultra 1.0','2TB Google One storage','Workspace integration','Advanced reasoning','Code generation','Image understanding','Long context','Private account'],
         specs: {'👤 Account Type':'Private - Only You','⏱️ Delivery':'Instant','🔄 Warranty':'Full term','☁️ Storage':'2TB Included'}
     },
-    {
-        id: 'claude-pro',
-        name: 'Claude Pro',
-        icon: '<img src="images/claude_logo.png" style="width:40px;height:40px;" alt="Claude">',
-        category: 'AI Tools',
-        tagline: 'Anthropic\'s advanced AI assistant',
-        description: 'Claude Pro with 200K context, file uploads, and priority access.',
-        durationType: 'selectable',
-        durations: [
-            { label: '1 Month', months: 1, price: '12.99', oldPrice: '20.00', discount: '35%' },
-            { label: '3 Months', months: 3, price: '29.99', oldPrice: '60.00', discount: '50%' },
-            { label: '6 Months', months: 6, price: '49.99', oldPrice: '120.00', discount: '58%' },
-            { label: '12 Months', months: 12, price: '89.99', oldPrice: '240.00', discount: '63%' }
-        ],
-        accountType: 'Shared Account',
-        delivery: 'Under 15 min',
-        warranty: '6 Month Warranty',
-        support: '24/7 WhatsApp',
-        features: ['200K context window','File & image upload','Priority bandwidth','Early features','Multiple workspaces','Code interpreter','Great for devs','Shared premium'],
-        specs: {'👤 Account Type':'Shared (3 users)','⏱️ Delivery':'Under 15 min','🔄 Warranty':'6 Months','📊 Context':'200K tokens'}
-    },
+    // {
+    //     id: 'claude-pro',
+    //     name: 'Claude Pro',
+    //     icon: '<img src="images/claude_logo.png" style="width:40px;height:40px;" alt="Claude">',
+    //     category: 'AI Tools',
+    //     tagline: 'Anthropic\'s advanced AI assistant',
+    //     description: 'Claude Pro with 200K context, file uploads, and priority access.',
+    //     durationType: 'selectable',
+    //     durations: [
+    //         { label: '1 Month', months: 1, price: '12.99', oldPrice: '20.00', discount: '35%' },
+    //         { label: '3 Months', months: 3, price: '29.99', oldPrice: '60.00', discount: '50%' },
+    //         { label: '6 Months', months: 6, price: '49.99', oldPrice: '120.00', discount: '58%' },
+    //         { label: '12 Months', months: 12, price: '89.99', oldPrice: '240.00', discount: '63%' }
+    //     ],
+    //     accountType: 'Shared Account',
+    //     delivery: 'Under 15 min',
+    //     warranty: '6 Month Warranty',
+    //     support: '24/7 WhatsApp',
+    //     features: ['200K context window','File & image upload','Priority bandwidth','Early features','Multiple workspaces','Code interpreter','Great for devs','Shared premium'],
+    //     specs: {'👤 Account Type':'Shared (3 users)','⏱️ Delivery':'Under 15 min','🔄 Warranty':'6 Months','📊 Context':'200K tokens'}
+    // },
     {
         id: 'capcut-pro',
         name: 'CapCut Pro',
@@ -88,8 +88,10 @@ const products = [
         description: 'CapCut Pro with premium effects, transitions, and no watermark. Shared team account.',
         durationType: 'fixed',
         durations: [
-            { label: '1 Month', months: 1, price: '3.00', oldPrice: '5.00', discount: '40%' }
-        ],
+                { label: '1 Month', months: 1, price: '4.99', oldPrice: '10.00', discount: '50%' },
+                { label: '6 Months', months: 6, price: '19.99', oldPrice: '60.00', discount: '67%' },
+                { label: '12 Months', months: 12, price: '34.99', oldPrice: '120.00', discount: '70%' }
+            ],
         accountType: 'Shared Account',
         delivery: 'Under 30 min',
         warranty: 'Full Warranty',
