@@ -86,7 +86,7 @@ const products = [
         category: 'AI Tools',
         tagline: 'Professional video editing',
         description: 'CapCut Pro with premium effects, transitions, and no watermark. Shared team account.',
-        durationType: 'fixed',
+        durationType: 'selectable',
         durations: [
                 { label: '1 Month', months: 1, price: '4.99', oldPrice: '10.00', discount: '50%' },
                 { label: '6 Months', months: 6, price: '19.99', oldPrice: '60.00', discount: '67%' },
