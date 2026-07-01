@@ -764,7 +764,37 @@ const products = [
         support: '24/7 WhatsApp',
         features: ['500M coins', 'Gmail delivery', 'Fast delivery'],
         specs: {'🪙 Coins':'500 Million','⏱️ Delivery':'Under 1 hour','📧 Delivery':'Via Gmail'}
-    }
+    },
+     {
+        id: 'Shahid-vip',
+        available: true,
+        name: 'Shahid VIP',
+        icon: '<img src="images/shahid_logo.png" style="width:40px;height:40px;" alt="Shahid">',
+        category: 'Entertainment',
+        tagline: 'Premium Streaming Experience',
+        description: 'Access to exclusive content and features with Shahid VIP.',
+        durationType: 'selectable',
+        durations: [
+            { label: '1 Month (user)', months: 1, price: '2.5', oldPrice: '5', discount: '50%' },
+            { label: '3 Months (user)', months: 3, price: '5', oldPrice: '15', discount: '35%' }
+        ],
+        accountType: 'Shared',
+        delivery: 'Instant (under 5 min)',
+        warranty: 'Full Warranty',
+        support: '24/7 WhatsApp',
+        features : [
+    'Ad-free experience',
+    'Full access to Shahid Originals',
+    'Exclusive Arabic premieres',
+    'Live TV channels in HD',
+    'Offline viewing (downloads)',
+    'Multiple device streaming',
+    'Parental control settings',
+    'Multi-profile support',
+],
+        // features: ['GPT-4 Turbo access','DALL-E 3 image generation','Web browsing capability','Advanced Data Analysis','Priority access','Custom GPTs','Plugin support','Private account'],
+        specs: {'👤 Account Type':'Shared ','⏱️ Delivery':'Instant (under 5 min)','🔄 Warranty':'Full term warranty','💬 Support':'24/7 WhatsApp'}
+    },
 ];
 
 // =============================================
