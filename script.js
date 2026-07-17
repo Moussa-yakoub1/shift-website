@@ -1,7 +1,7 @@
 // =============================================
 // CONFIGURATION
 // =============================================
-const WHATSAPP_NUMBER = '96171817081'; // ← CHANGE THIS
+const WHATSAPP_NUMBER = '+96171817081'; // ← CHANGE THIS
 const WHATSAPP_MESSAGE_TEMPLATE = "Hi Shift Team! 👋 I'm interested in the *{product}* plan ({duration}) at *${price}*. I'd like to get started!";
 const SOCIAL_LINKS = {
     instagram: 'https://instagram.com/0shiftagency',
@@ -45,40 +45,18 @@ const products = [
         icon: '<img src="images/gemini.google_logo.png" style="width:40px;height:40px;" alt="Gemini">',
         category: 'AI Tools',
         tagline: "Google's most capable AI model",
-        description: 'Google Gemini Advanced with 2TB Google One storage included.',
+        description: 'Google Gemini Advanced with 5TB Google One storage included.',
         durationType: 'selectable',
         durations: [
-
             { label: '12 Months', months: 12, price: '15', oldPrice: '120', discount: '88%' }
         ],
         accountType: 'Private Account',
         delivery: 'Instant (under 5 min)',
         warranty: 'Full Warranty',
         support: '24/7 WhatsApp',
-        features: ['Gemini Ultra 1.0','2TB Google One storage','Workspace integration','Advanced reasoning','Code generation','Image understanding','Long context','Private account'],
-        specs: {'👤 Account Type':'Private - Only You','⏱️ Delivery':'Instant','🔄 Warranty':'Full term','☁️ Storage':'2TB Included'}
+        features: ['Gemini Ultra 1.0','5TB Google One storage','Workspace integration','Advanced reasoning','Code generation','Image understanding','Long context','Private account'],
+        specs: {'👤 Account Type':'Private - Only You','⏱️ Delivery':'Instant','🔄 Warranty':'Full term','☁️ Storage':'5TB Included'}
     },
-    // {
-    //     id: 'claude-pro',
-    //     name: 'Claude Pro',
-    //     icon: '<img src="images/claude_logo.png" style="width:40px;height:40px;" alt="Claude">',
-    //     category: 'AI Tools',
-    //     tagline: 'Anthropic\'s advanced AI assistant',
-    //     description: 'Claude Pro with 200K context, file uploads, and priority access.',
-    //     durationType: 'selectable',
-    //     durations: [
-    //         { label: '1 Month', months: 1, price: '12.99', oldPrice: '20.00', discount: '35%' },
-    //         { label: '3 Months', months: 3, price: '29.99', oldPrice: '60.00', discount: '50%' },
-    //         { label: '6 Months', months: 6, price: '49.99', oldPrice: '120.00', discount: '58%' },
-    //         { label: '12 Months', months: 12, price: '89.99', oldPrice: '240.00', discount: '63%' }
-    //     ],
-    //     accountType: 'Shared Account',
-    //     delivery: 'Under 15 min',
-    //     warranty: '6 Month Warranty',
-    //     support: '24/7 WhatsApp',
-    //     features: ['200K context window','File & image upload','Priority bandwidth','Early features','Multiple workspaces','Code interpreter','Great for devs','Shared premium'],
-    //     specs: {'👤 Account Type':'Shared (3 users)','⏱️ Delivery':'Under 15 min','🔄 Warranty':'6 Months','📊 Context':'200K tokens'}
-    // },
     {
         id: 'capcut-pro',
         name: 'CapCut Pro',
@@ -101,7 +79,6 @@ const products = [
     },
 
     // ===== STREAMING =====
-    
     {
         id: 'netflix-1u-1m',
         name: 'Netflix 1 Screen (1M)',
@@ -691,7 +668,7 @@ const products = [
     {
         id: 'microsoft-365',
         name: 'Microsoft 365',
-        icon: '<img src="images/microsoft_logo.png" style="width:40px;height:40px;" alt="Microsoft 365">',  
+        icon: '<img src="images/microsoft_logo.png" style="width:40px;height:40px;" alt="Microsoft 365">',
         category: 'Productivity',
         tagline: 'Office suite + 1TB cloud',
         description: 'Microsoft 365 with Word, Excel, PowerPoint, Outlook, and 1TB OneDrive.',
@@ -745,7 +722,7 @@ const products = [
         warranty: 'Lifetime Warranty',
         support: '24/7 WhatsApp',
         features: ['Full game', 'PC version', 'Online play', 'Lifetime access'],
-        specs: {'👤 Account Type':'PC Account','⏱️ Delivery':'Under 1 hour','🔄 Warranty':'Lifetime','🎮 Platform':'PC'}
+        specs: {'👤 Account Type':'PC Account','⏱️ Delivery':'Under 1 hour','🔄 Warranty':'Lifetime','PLAY Platform':'PC'}
     },
     {
         id: '8ballpool',
@@ -765,7 +742,7 @@ const products = [
         features: ['500M coins', 'Gmail delivery', 'Fast delivery'],
         specs: {'🪙 Coins':'500 Million','⏱️ Delivery':'Under 1 hour','📧 Delivery':'Via Gmail'}
     },
-     {
+    {
         id: 'Shahid-vip',
         available: true,
         name: 'Shahid VIP',
@@ -782,20 +759,24 @@ const products = [
         delivery: 'Instant (under 5 min)',
         warranty: 'Full Warranty',
         support: '24/7 WhatsApp',
-        features : [
-    'Ad-free experience',
-    'Full access to Shahid Originals',
-    'Exclusive Arabic premieres',
-    'Live TV channels in HD',
-    'Offline viewing (downloads)',
-    'Multiple device streaming',
-    'Parental control settings',
-    'Multi-profile support',
-],
-        // features: ['GPT-4 Turbo access','DALL-E 3 image generation','Web browsing capability','Advanced Data Analysis','Priority access','Custom GPTs','Plugin support','Private account'],
+        features: [
+            'Ad-free experience',
+            'Full access to Shahid Originals',
+            'Exclusive Arabic premieres',
+            'Live TV channels in HD',
+            'Offline viewing (downloads)',
+            'Multiple device streaming',
+            'Parental control settings',
+            'Multi-profile support',
+        ],
         specs: {'👤 Account Type':'Shared ','⏱️ Delivery':'Instant (under 5 min)','🔄 Warranty':'Full term warranty','💬 Support':'24/7 WhatsApp'}
     },
 ];
+
+// =============================================
+// ACTIVE CATEGORY FILTER STATE
+// =============================================
+let activeCategory = 'all';
 
 // =============================================
 // WHATSAPP FUNCTIONS
@@ -811,17 +792,19 @@ function openWhatsApp(productName, price, durationLabel) {
     const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
     if (modalLink) modalLink.href = whatsappURL;
     const modal = document.getElementById('whatsappModal');
-    if (modal) { modal.classList.add('active'); document.body.style.overflow = 'hidden'; }
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
 }
+
 function closeModal() {
     const modal = document.getElementById('whatsappModal');
-    if (modal) { modal.classList.remove('active'); document.body.style.overflow = ''; }
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
 }
-document.addEventListener('DOMContentLoaded', () => {
-    const modal = document.getElementById('whatsappModal');
-    if (modal) modal.addEventListener('click', function(e) { if (e.target === this) closeModal(); });
-});
-document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
 
 // =============================================
 // MOBILE MENU
@@ -835,10 +818,18 @@ function toggleMenu() {
         document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
     }
 }
+
+// =============================================
+// GLOBAL MENU CLOSE
+// =============================================
 function closeMenu() {
     const navLinks = document.getElementById('navLinks');
     const hamburger = document.getElementById('hamburger');
-    if (navLinks && hamburger) { navLinks.classList.remove('active'); hamburger.classList.remove('active'); document.body.style.overflow = ''; }
+    if (navLinks && hamburger) {
+        navLinks.classList.remove('active');
+        hamburger.classList.remove('active');
+        document.body.style.overflow = '';
+    }
 }
 
 // =============================================
@@ -846,13 +837,15 @@ function closeMenu() {
 // =============================================
 function toggleFAQ(element) {
     document.querySelectorAll('.faq-item').forEach(item => {
-        if (item !== element && item.classList.contains('active')) item.classList.remove('active');
+        if (item !== element && item.classList.contains('active')) {
+            item.classList.remove('active');
+        }
     });
     element.classList.toggle('active');
 }
 
 // =============================================
-// SCROLL TO TOP
+// SCROLL EVENTS (Navbar + Scroll-to-top)
 // =============================================
 window.addEventListener('scroll', () => {
     const scrollTopBtn = document.getElementById('scrollTop');
@@ -862,7 +855,116 @@ window.addEventListener('scroll', () => {
 });
 
 // =============================================
-// DURATION SELECTOR
+// SCROLL REVEAL (IntersectionObserver)
+// =============================================
+function initScrollReveal() {
+    const reveals = document.querySelectorAll('.reveal');
+    if (!reveals.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -40px 0px'
+    });
+
+    reveals.forEach(el => observer.observe(el));
+}
+
+// =============================================
+// ANIMATED STAT COUNTERS
+// =============================================
+function initStatCounters() {
+    const stats = document.querySelectorAll('[data-count]');
+    if (!stats.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                const target = parseInt(el.getAttribute('data-count'));
+                animateCount(el, 0, target, 1500);
+                observer.unobserve(el);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    stats.forEach(el => observer.observe(el));
+}
+
+function animateCount(el, start, end, duration) {
+    const range = end - start;
+    const startTime = performance.now();
+
+    function step(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        // Ease out cubic
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = Math.floor(start + range * eased);
+        el.textContent = current;
+        if (progress < 1) {
+            requestAnimationFrame(step);
+        } else {
+            el.textContent = end;
+        }
+    }
+
+    requestAnimationFrame(step);
+}
+
+// =============================================
+// CATEGORY FILTER
+// =============================================
+function initCategoryFilters() {
+    const container = document.getElementById('categoryFilters');
+    if (!container) return;
+
+    container.addEventListener('click', (e) => {
+        const pill = e.target.closest('.category-pill');
+        if (!pill) return;
+
+        // Update active state
+        container.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+
+        activeCategory = pill.getAttribute('data-category');
+
+        // Clear search when switching categories
+        const searchInput = document.getElementById('searchInput');
+        const searchClear = document.getElementById('searchClear');
+        if (searchInput) searchInput.value = '';
+        if (searchClear) searchClear.classList.remove('visible');
+
+        renderProductCards(getFilteredProducts());
+    });
+}
+
+function getFilteredProducts() {
+    let filtered = products;
+    if (activeCategory !== 'all') {
+        filtered = filtered.filter(p => p.category === activeCategory);
+    }
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput && searchInput.value.trim()) {
+        const query = searchInput.value.toLowerCase().trim();
+        filtered = filtered.filter(p =>
+            p.name.toLowerCase().includes(query) ||
+            p.category.toLowerCase().includes(query) ||
+            p.description.toLowerCase().includes(query) ||
+            p.features.some(f => f.toLowerCase().includes(query))
+        );
+    }
+    return filtered;
+}
+
+// =============================================
+// DURATION SELECTOR (Product Detail Page)
 // =============================================
 function selectDuration(button, price, oldPrice, discount, durationLabel) {
     document.querySelectorAll('.duration-btn').forEach(btn => btn.classList.remove('active'));
@@ -877,7 +979,7 @@ function selectDuration(button, price, oldPrice, discount, durationLabel) {
     if (ctaBtn) {
         ctaBtn.setAttribute('data-price', price);
         ctaBtn.setAttribute('data-duration', durationLabel);
-        ctaBtn.textContent = '💬 Get on WhatsApp - $' + price + ' (' + durationLabel + ')';
+        ctaBtn.textContent = '💬 Get on WhatsApp — $' + price + ' (' + durationLabel + ')';
     }
 }
 
@@ -887,17 +989,18 @@ function selectDuration(button, price, oldPrice, discount, durationLabel) {
 function renderProductCards(filteredProducts = products) {
     const grid = document.getElementById('productsGrid');
     if (!grid) return;
+
     if (filteredProducts.length === 0) {
-        grid.innerHTML = '<div class="no-results"><span class="icon">🔍</span><p>No products found</p><p style="font-size:0.85rem;">Try a different search term</p></div>';
+        grid.innerHTML = '<div class="no-results"><span class="icon">🔍</span><p>No products found</p><p style="font-size:0.85rem;margin-top:0.3rem;">Try a different search term or category</p></div>';
         return;
     }
+
     grid.innerHTML = filteredProducts.map((product, index) => {
         const def = product.durations[0];
         let durationBadge = '';
         let unavailableBadge = '';
         let cardClass = '';
-        
-        // Check if product is unavailable
+
         if (product.available === false) {
             cardClass = ' unavailable';
             unavailableBadge = '<span class="unavailable-badge">🚫 Unavailable</span>';
@@ -906,12 +1009,12 @@ function renderProductCards(filteredProducts = products) {
         } else if (product.durationType === 'none') {
             durationBadge = '<span class="no-duration-badge">⚡ No duration</span>';
         }
-        
+
         return `
-        <a href="${product.available === false ? '#' : 'product.html?id=' + product.id}" 
-           class="product-card${cardClass}" 
-           ${product.available !== false ? `onclick="saveProductData('${product.id}')"` : ''} 
-           style="animation-delay:${index * 0.05}s">
+        <a href="${product.available === false ? '#' : 'product.html?id=' + product.id}"
+           class="product-card${cardClass}"
+           ${product.available !== false ? `onclick="saveProductData('${product.id}')"` : ''}
+           style="animation: fadeInUp 0.5s ease-out ${index * 0.04}s both;">
             <span class="product-icon">${product.icon}</span>
             <span class="product-category-tag">${product.category}</span>
             <h3>${product.name}</h3>
@@ -928,6 +1031,7 @@ function renderProductCards(filteredProducts = products) {
         </a>`;
     }).join('');
 }
+
 function saveProductData(productId) {
     const product = products.find(p => p.id === productId);
     if (product) localStorage.setItem('currentProduct', JSON.stringify(product));
@@ -936,166 +1040,248 @@ function saveProductData(productId) {
 // =============================================
 // SEARCH
 // =============================================
-document.addEventListener('DOMContentLoaded', () => {
+function initSearch() {
     const searchInput = document.getElementById('searchInput');
     const searchClear = document.getElementById('searchClear');
-    if (searchInput) {
-        searchInput.addEventListener('input', function() {
-            const query = this.value.toLowerCase().trim();
-            if (searchClear) searchClear.classList.toggle('visible', query.length > 0);
-            if (query === '') { renderProductCards(products); return; }
-            const filtered = products.filter(p =>
-                p.name.toLowerCase().includes(query) ||
-                p.category.toLowerCase().includes(query) ||
-                p.description.toLowerCase().includes(query) ||
-                p.features.some(f => f.toLowerCase().includes(query))
-            );
-            renderProductCards(filtered);
+    if (!searchInput) return;
+
+    searchInput.addEventListener('input', function() {
+        const query = this.value.toLowerCase().trim();
+        if (searchClear) searchClear.classList.toggle('visible', query.length > 0);
+        renderProductCards(getFilteredProducts());
+    });
+
+    if (searchClear) {
+        searchClear.addEventListener('click', () => {
+            searchInput.value = '';
+            searchClear.classList.remove('visible');
+            renderProductCards(getFilteredProducts());
+            searchInput.focus();
         });
-        if (searchClear) {
-            searchClear.addEventListener('click', () => {
-                searchInput.value = '';
-                searchClear.classList.remove('visible');
-                renderProductCards(products);
-                searchInput.focus();
-            });
-        }
     }
-    if (document.getElementById('productsGrid')) renderProductCards();
-});
+}
+
 function clearSearch() {
     const searchInput = document.getElementById('searchInput');
     const searchClear = document.getElementById('searchClear');
     if (searchInput) { searchInput.value = ''; searchInput.focus(); }
     if (searchClear) searchClear.classList.remove('visible');
-    renderProductCards(products);
+    renderProductCards(getFilteredProducts());
 }
 
 // =============================================
-// PRODUCT DETAIL PAGE
+// PRODUCT DETAIL PAGE (FULL IMPLEMENTATION)
 // =============================================
 function renderProductDetail() {
     const detailContainer = document.getElementById('productDetail');
     if (!detailContainer) return;
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const productId = urlParams.get('id');
-    
+    // Get product ID from URL
+    const params = new URLSearchParams(window.location.search);
+    const productId = params.get('id');
+
+    // Try to find product from localStorage first, then from array
     let product = null;
-    
-    // Try localStorage
-    const storedProduct = localStorage.getItem('currentProduct');
-    if (storedProduct) {
-        const parsed = JSON.parse(storedProduct);
-        if (parsed.id === productId) {
-            product = parsed;
-        }
+    const cached = localStorage.getItem('currentProduct');
+    if (cached) {
+        try {
+            const parsed = JSON.parse(cached);
+            if (parsed.id === productId) product = parsed;
+        } catch (e) { /* ignore parse errors */ }
     }
-    
-    // Fallback
-    if (!product && productId) {
+    if (!product) {
         product = products.find(p => p.id === productId);
     }
-    
+
+    // Product not found
     if (!product) {
-        product = products[0];
+        detailContainer.innerHTML = `
+            <div style="text-align:center;padding:4rem 1rem;">
+                <div style="font-size:5rem;margin-bottom:1rem;">🔍</div>
+                <h1 style="font-size:2rem;margin-bottom:1rem;">Product Not Found</h1>
+                <p style="color:var(--text-secondary);margin-bottom:2rem;">The product you're looking for doesn't exist or has been removed.</p>
+                <a href="index.html" class="btn btn-primary">← Back to Products</a>
+            </div>
+        `;
+        document.title = 'Not Found — Shift';
+        return;
     }
 
-    document.title = `${product.name} - Shift`;
-
-    // CHECK IF PRODUCT IS UNAVAILABLE
+    // Product unavailable
     if (product.available === false) {
         detailContainer.innerHTML = `
             <div style="text-align:center;padding:4rem 1rem;">
                 <div style="font-size:5rem;margin-bottom:1rem;">🚫</div>
                 <h1 style="font-size:2rem;color:var(--red);margin-bottom:1rem;">Currently Unavailable</h1>
-                <p style="color:rgba(242,241,238,0.5);margin-bottom:2rem;">${product.name} is temporarily out of stock. Check back soon!</p>
+                <p style="color:var(--text-secondary);margin-bottom:2rem;">${product.name} is temporarily out of stock. Check back soon!</p>
                 <a href="index.html" class="btn btn-primary">← Back to Products</a>
             </div>
         `;
+        document.title = 'Unavailable — Shift';
         return;
     }
 
-    const def = product.durations[0];
+    // Update page title
+    document.title = `${product.name} — Shift`;
+
+    // Get default duration
+    const defaultDuration = product.durations[0];
 
     // Build duration selector HTML
-    let durationSelectorHTML = '';
-    if (product.durationType === 'selectable') {
-        durationSelectorHTML = `
-        <div class="duration-selector">
-            ${product.durations.map((d, i) => `
-                <button class="duration-btn ${i === 0 ? 'active' : ''}" onclick="selectDuration(this, '${d.price}', '${d.oldPrice}', '${d.discount}', '${d.label}')">
-                    ${d.label}
-                    <span class="dur-price">$${d.price}</span>
-                    <span class="dur-save">Save ${d.discount}</span>
-                </button>
-            `).join('')}
-        </div>`;
-    } else if (product.durationType === 'none') {
-        durationSelectorHTML = '<p style="text-align:center;color:rgba(242,241,238,0.4);margin-bottom:1rem;">⚡ Service - No duration</p>';
+    let durationHTML = '';
+    if (product.durationType === 'selectable' && product.durations.length > 1) {
+        durationHTML = `
+            <div class="duration-selector">
+                ${product.durations.map((d, i) => `
+                    <button class="duration-btn${i === 0 ? ' active' : ''}"
+                        onclick="selectDuration(this, '${d.price}', '${d.oldPrice}', '${d.discount}', '${d.label}')">
+                        ${d.label}
+                        <span class="dur-price">$${d.price}</span>
+                        <span class="dur-save">-${d.discount}</span>
+                    </button>
+                `).join('')}
+            </div>
+        `;
     }
 
-    const specsHTML = Object.entries(product.specs).map(([key, value]) => `
-        <div class="spec-item"><div class="spec-icon">${key.split(' ')[0]}</div><div class="spec-text"><strong>${key.split(' ').slice(1).join(' ')}</strong><span>${value}</span></div></div>
-    `).join('');
-    const featuresHTML = product.features.map(f => `<li>${f}</li>`).join('');
+    // Build specs HTML
+    let specsHTML = '';
+    if (product.specs) {
+        specsHTML = `
+            <h2 style="font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:600;margin-bottom:1rem;">Specifications</h2>
+            <div class="specs-grid">
+                ${Object.entries(product.specs).map(([key, value]) => {
+                    const emoji = key.match(/^(\S+)/)?.[1] || '📋';
+                    const label = key.replace(/^(\S+)\s*/, '');
+                    return `
+                        <div class="spec-item">
+                            <span class="spec-icon">${emoji}</span>
+                            <div class="spec-text">
+                                <strong>${label}</strong>
+                                <span>${value}</span>
+                            </div>
+                        </div>
+                    `;
+                }).join('')}
+            </div>
+        `;
+    }
 
+    // Build features HTML
+    let featuresHTML = '';
+    if (product.features && product.features.length) {
+        featuresHTML = `
+            <h2 style="font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:600;margin-bottom:1rem;">What's Included</h2>
+            <ul class="features-list">
+                ${product.features.map(f => `<li>${f}</li>`).join('')}
+            </ul>
+        `;
+    }
+
+    // Build the full page
     detailContainer.innerHTML = `
-        <div class="breadcrumb">
-            <a href="index.html">Home</a><span class="separator">›</span>
-            <a href="index.html#products">Products</a><span class="separator">›</span>
-            <span>${product.name}</span>
-        </div>
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="index.html">Home</a>
+            <span class="separator">›</span>
+            <a href="index.html#products">Products</a>
+            <span class="separator">›</span>
+            <span style="color:var(--text-primary);">${product.name}</span>
+        </nav>
+
+        <!-- Product Header -->
         <div class="product-header">
             <div class="product-icon-large">${product.icon}</div>
             <div class="product-info">
                 <span class="product-category-tag">${product.category}</span>
                 <h1>${product.name}</h1>
                 <p class="tagline">${product.tagline}</p>
-                <p style="color:rgba(242,241,238,0.6);margin-bottom:1.2rem;font-size:0.9rem;">${product.description}</p>
-                ${durationSelectorHTML}
                 <div class="price-box">
-                    <span class="discount-badge" id="dynamicDiscount">SAVE ${def.discount}</span>
-                    <div class="old-price" id="dynamicOldPrice">$${def.oldPrice}</div>
-                    <div class="current-price" id="dynamicCurrentPrice">$${def.price}</div>
-                    <span class="period">${def.label}</span>
+                    <span class="discount-badge" id="dynamicDiscount">SAVE ${defaultDuration.discount}</span>
+                    <div class="old-price" id="dynamicOldPrice">$${defaultDuration.oldPrice}</div>
+                    <div class="current-price" id="dynamicCurrentPrice">$${defaultDuration.price}</div>
+                    <div class="period">${product.durationType === 'fixed' ? defaultDuration.label : 'Starting price'}</div>
                 </div>
             </div>
         </div>
-        <h2 style="font-size:1.3rem;margin-bottom:1rem;">📋 Specifications</h2>
-        <div class="specs-grid">${specsHTML}</div>
-        <h2 style="font-size:1.3rem;margin-bottom:1rem;">✅ What's Included</h2>
-        <ul class="features-list">${featuresHTML}</ul>
+
+        <!-- Duration Selector -->
+        ${durationHTML}
+
+        <!-- Specs -->
+        ${specsHTML}
+
+        <!-- Features -->
+        ${featuresHTML}
+
+        <!-- CTA Box -->
         <div class="cta-box">
             <h2>Get ${product.name} Now</h2>
-            <p>Instant delivery via WhatsApp. ${product.warranty} included.</p>
-            <button class="btn-get-now" id="ctaButton" data-price="${def.price}" data-duration="${def.label}" onclick="openWhatsApp('${product.name}', this.getAttribute('data-price'), this.getAttribute('data-duration'))">
-                💬 Get on WhatsApp - $${def.price} (${def.label})
+            <p>Secure your subscription via WhatsApp. Instant delivery guaranteed.</p>
+            <button class="btn-get-now" id="ctaButton"
+                    data-price="${defaultDuration.price}"
+                    data-duration="${defaultDuration.label}"
+                    onclick="openWhatsApp('${product.name}', this.getAttribute('data-price'), this.getAttribute('data-duration'))">
+                💬 Get on WhatsApp — $${defaultDuration.price} (${defaultDuration.label})
             </button>
-            <p class="guarantee-text">🔒 ${product.warranty} • ${product.delivery} • ${product.support}</p>
+            <p class="guarantee-text">✓ ${product.warranty} · ${product.delivery} · ${product.support}</p>
         </div>
-        <div style="text-align:center;margin-bottom:2rem;">
-            <a href="index.html#products" class="btn-back">← Back to All Products</a>
-        </div>
+
+        <!-- Back button -->
+        <a href="index.html#products" style="color:var(--text-secondary);text-decoration:none;font-size:0.88rem;display:inline-flex;align-items:center;gap:0.4rem;transition:var(--transition);"
+           onmouseover="this.style.color='var(--blue)'" onmouseout="this.style.color='var(--text-secondary)'">
+            ← Back to all products
+        </a>
     `;
 }
-document.addEventListener('DOMContentLoaded', () => {
-    if (window.location.pathname.includes('product.html')) renderProductDetail();
-});
 
 // =============================================
-// SMOOTH SCROLL
+// INITIALIZATION
 // =============================================
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        const href = this.getAttribute('href');
-        if (href === '#') return;
-        const target = document.querySelector(href);
-        if (target) {
-            e.preventDefault();
-            const position = target.getBoundingClientRect().top + window.pageYOffset - 70;
-            window.scrollTo({ top: position, behavior: 'smooth' });
-        }
+document.addEventListener('DOMContentLoaded', () => {
+    // Modal close on overlay click
+    const modal = document.getElementById('whatsappModal');
+    if (modal) {
+        modal.addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+    }
+
+    // Escape key closes modal
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeModal();
+    });
+
+    // Homepage initializations
+    if (document.getElementById('productsGrid')) {
+        renderProductCards();
+        initSearch();
+        initCategoryFilters();
+    }
+
+    // Product detail page
+    if (window.location.pathname.includes('product.html') || window.location.href.includes('product.html')) {
+        renderProductDetail();
+    }
+
+    // Scroll reveal
+    initScrollReveal();
+
+    // Stat counters
+    initStatCounters();
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href === '#') return;
+            const target = document.querySelector(href);
+            if (target) {
+                e.preventDefault();
+                const position = target.getBoundingClientRect().top + window.pageYOffset - 80;
+                window.scrollTo({ top: position, behavior: 'smooth' });
+            }
+        });
     });
 });
 

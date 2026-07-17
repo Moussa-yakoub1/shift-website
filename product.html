@@ -4,204 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#000000">
-    <title>Product Details - Shift</title>
+    <meta name="description" content="Product details — Shift Premium Digital Subscriptions">
+    <title>Product Details — Shift</title>
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon_io/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="images/favicon_io/favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="images/favicon_io/apple-touch-icon.png">
-<link rel="shortcut icon" href="images/favicon_io/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon_io/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon_io/apple-touch-icon.png">
+    <link rel="shortcut icon" href="images/favicon_io/favicon.ico">
     <link rel="stylesheet" href="styles.css">
-    <style>
-        .product-detail {
-            padding: 6rem 1rem 3rem;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        .breadcrumb {
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            margin-bottom: 1.5rem;
-            color: rgba(242, 241, 238, 0.4);
-            font-size: 0.8rem;
-            flex-wrap: wrap;
-        }
-        .breadcrumb a {
-            color: rgba(242, 241, 238, 0.5);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        .breadcrumb a:hover, .breadcrumb a:active { color: var(--blue); }
-        .breadcrumb .separator { color: rgba(242, 241, 238, 0.2); }
-        .product-header {
-            display: flex;
-            gap: 1.2rem;
-            margin-bottom: 2rem;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-        .product-icon-large {
-            font-size: 4rem;
-            background: rgba(0, 62, 211, 0.1);
-            width: 100px;
-            height: 100px;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-        .product-info { width: 100%; }
-        .product-category-tag {
-            display: inline-block;
-            background: rgba(0, 62, 211, 0.12);
-            color: var(--blue);
-            padding: 0.2rem 0.8rem;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
-        }
-        .product-info h1 {
-            font-size: 1.8rem;
-            font-weight: 900;
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.5px;
-        }
-        .product-info .tagline {
-            color: rgba(242, 241, 238, 0.6);
-            font-size: 1rem;
-            margin-bottom: 1.2rem;
-        }
-        .price-box {
-            background: var(--dark-grey);
-            border-radius: 16px;
-            padding: 1.2rem;
-            border: 1px solid rgba(242, 241, 238, 0.06);
-            display: inline-block;
-            text-align: center;
-        }
-        .price-box .discount-badge {
-            background: var(--red);
-            color: var(--white);
-            padding: 0.15rem 0.7rem;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            display: inline-block;
-            margin-bottom: 0.3rem;
-        }
-        .price-box .old-price {
-            font-size: 1.1rem;
-            color: rgba(242, 241, 238, 0.35);
-            text-decoration: line-through;
-            margin-bottom: 0.15rem;
-        }
-        .price-box .current-price {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: var(--light-yellow);
-            line-height: 1;
-        }
-        .price-box .period {
-            color: rgba(242, 241, 238, 0.4);
-            font-size: 0.85rem;
-        }
-        .specs-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 0.6rem;
-            margin-bottom: 2rem;
-        }
-        .spec-item {
-            background: var(--dark-grey);
-            border-radius: 12px;
-            padding: 1rem 1.2rem;
-            border: 1px solid rgba(242, 241, 238, 0.06);
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-        .spec-icon { font-size: 1.3rem; flex-shrink: 0; }
-        .spec-text strong { display: block; font-size: 0.9rem; margin-bottom: 0.1rem; }
-        .spec-text span { color: rgba(242, 241, 238, 0.5); font-size: 0.8rem; }
-        .features-list {
-            list-style: none;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
-        }
-        .features-list li {
-            background: var(--dark-grey);
-            border-radius: 12px;
-            padding: 0.8rem 1rem;
-            border: 1px solid rgba(242, 241, 238, 0.06);
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            font-size: 0.9rem;
-        }
-        .features-list li::before {
-            content: '✓';
-            color: var(--blue);
-            font-weight: 700;
-            font-size: 1rem;
-            flex-shrink: 0;
-        }
-        .cta-box {
-            background: var(--dark-grey);
-            border-radius: 16px;
-            padding: 1.5rem;
-            text-align: center;
-            border: 1px solid rgba(0, 62, 211, 0.2);
-            margin-bottom: 2rem;
-        }
-        .cta-box h2 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.5rem; }
-        .cta-box p { color: rgba(242, 241, 238, 0.6); margin-bottom: 1.5rem; font-size: 0.9rem; }
-        .btn-get-now {
-            background: var(--blue);
-            color: var(--white);
-            padding: 0.9rem 2rem;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1rem;
-            border: none;
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            font-family: inherit;
-            width: 100%;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .btn-get-now:hover, .btn-get-now:active {
-            background: #0030a8;
-            transform: translateY(-2px);
-            box-shadow: 0 12px 35px rgba(0, 62, 211, 0.4);
-        }
-        .guarantee-text {
-            color: rgba(242, 241, 238, 0.4);
-            font-size: 0.8rem;
-            margin-top: 0.8rem;
-        }
-        @media (min-width: 768px) {
-            .product-detail { padding: 8rem 2rem 4rem; }
-            .product-header { flex-direction: row; text-align: left; align-items: flex-start; gap: 2rem; }
-            .product-info h1 { font-size: 2.2rem; }
-            .features-list { grid-template-columns: repeat(2, 1fr); }
-            .specs-grid { grid-template-columns: repeat(2, 1fr); }
-            .btn-get-now { width: auto; }
-        }
-    </style>
 </head>
 <body>
 
+    <!-- Background Orbs -->
+    <div class="bg-orbs" aria-hidden="true">
+        <div class="bg-orb bg-orb--1"></div>
+        <div class="bg-orb bg-orb--2"></div>
+        <div class="bg-orb bg-orb--3"></div>
+    </div>
+
+    <!-- ===== NAVBAR ===== -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo">Shift<span class="logo-dot">.</span></a>
@@ -217,24 +37,41 @@
         </div>
     </nav>
 
+    <!-- Product detail rendered by JS -->
     <section class="product-detail" id="productDetail"></section>
 
+    <!-- ===== FOOTER ===== -->
     <footer class="footer">
         <div class="footer-container">
-            <div class="footer-logo">Shift<span style="color: var(--blue);">.</span></div>
-            <div class="footer-social">
-                <a href="https://instagram.com/0shiftagency" target="_blank" title="Instagram">
-                    <img src="images/instagram_logo.png" alt="Instagram" class="social-icon-img">
-                </a>
-                <a href="https://tiktok.com/@0shiftagency" target="_blank" title="TikTok">
-                    <img src="images/tiktok_logo.png" alt="TikTok" class="social-icon-img">
-                </a>
-                <a href="#" onclick="openWhatsApp('General Inquiry', '0', ''); return false;" title="WhatsApp">💬</a>
+            <div class="footer-about">
+                <div class="footer-logo">Shift<span style="color: var(--blue);">.</span></div>
+                <p>Premium digital subscriptions at the best prices. Instant delivery via WhatsApp.</p>
             </div>
-            <div class="footer-bottom"><p>&copy; 2024 Shift. All rights reserved.</p></div>
+            <div>
+                <div class="footer-social">
+                    <a href="https://instagram.com/0shiftagency" target="_blank" title="Instagram">
+                        <img src="images/instagram_logo.png" alt="Instagram" class="social-icon-img">
+                    </a>
+                    <a href="https://tiktok.com/@0shiftagency" target="_blank" title="TikTok">
+                        <img src="images/tiktok_logo.png" alt="TikTok" class="social-icon-img">
+                    </a>
+                    <a href="#" onclick="openWhatsApp('General Inquiry', '0', ''); return false;" title="WhatsApp">💬</a>
+                </div>
+            </div>
+            <div>
+                <div class="footer-links">
+                    <a href="index.html#products">Products</a>
+                    <a href="index.html#how-it-works">How It Works</a>
+                    <a href="index.html#faq">FAQ</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Shift. All rights reserved.</p>
         </div>
     </footer>
 
+    <!-- ===== WHATSAPP MODAL ===== -->
     <div class="modal-overlay" id="whatsappModal">
         <div class="modal">
             <div class="modal-icon">💬</div>
