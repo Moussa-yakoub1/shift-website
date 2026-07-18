@@ -721,10 +721,12 @@ body {
     backdrop-filter: blur(12px);
     border-radius: var(--card-radius);
     padding: 1.5rem;
-    border: 1px solid var(--glass-border);
+    border: 1px solid rgba(0, 62, 211, 0.25);
     transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
                 border-color 0.3s ease,
                 box-shadow 0.35s ease;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2), 
+                0 0 15px rgba(0, 62, 211, 0.12);
     cursor: pointer;
     text-decoration: none;
     color: inherit;
@@ -750,9 +752,9 @@ body {
 
 .product-card:hover {
     transform: translateY(-6px);
-    border-color: rgba(0, 62, 211, 0.25);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4),
-                0 0 40px rgba(0, 62, 211, 0.06);
+    border-color: rgba(0, 62, 211, 0.6);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45),
+                0 0 25px rgba(0, 62, 211, 0.25);
 }
 
 .product-card:hover::before {
