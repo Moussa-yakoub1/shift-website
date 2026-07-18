@@ -1809,3 +1809,33 @@ body {
 @media (min-width: 1200px) {
     .products-grid { grid-template-columns: repeat(4, 1fr); }
 }
+
+/* ===== FLOATING STICKY WHATSAPP (BOTTOM LEFT) ===== */
+.floating-whatsapp {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    width: 46px;
+    height: 46px;
+    background-color: var(--green);
+    color: var(--white);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 999;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.floating-whatsapp:hover {
+    background-color: #1ea952;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(37, 211, 102, 0.45);
+}
+
+.floating-whatsapp:active {
+    transform: scale(0.92);
+}
