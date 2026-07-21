@@ -46,9 +46,9 @@ const products = [
         category: 'AI Tools',
         tagline: "Google's most capable AI model",
         description: 'Google Gemini Advanced with 5TB Google One storage included.',
-        durationType: 'selectable',
+        durationType: 'fixed',
         durations: [
-            { label: '12 Months', months: 12, price: '15', oldPrice: '120', discount: '88%' }
+            { label: '12 Months', months: 12, price: '12', oldPrice: '120', discount: '88%' }
         ],
         accountType: 'Private Account',
         delivery: 'Instant (under 5 min)',
